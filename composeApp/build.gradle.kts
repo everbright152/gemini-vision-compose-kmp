@@ -72,7 +72,7 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodel.compose)
 
             // Utilities
-            implementation(libs.util.image.picker)
+          //  implementation(libs.util.image.picker)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)

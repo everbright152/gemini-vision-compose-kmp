@@ -1,5 +1,8 @@
 package di
 
+
+import di.network.GeminiApi
+import di.network.GeminiClient
 import org.koin.dsl.module
 
 fun appModule() = listOf(
@@ -12,5 +15,5 @@ val domainModule = module {
 }
 
 val dataModule = module {
-
+    single<GeminiApi> { GeminiClient.app.create()}
 }

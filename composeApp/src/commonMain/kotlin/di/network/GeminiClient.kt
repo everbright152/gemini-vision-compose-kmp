@@ -1,4 +1,4 @@
-package di
+package di.network
 
 import de.jensklingenberg.ktorfit.converter.CallConverterFactory
 import de.jensklingenberg.ktorfit.converter.FlowConverterFactory
@@ -13,7 +13,7 @@ import io.ktor.client.plugins.logging.*
 object GeminiClient {
     
     val app = ktorfit {
-        baseUrl("")
+        baseUrl(GeminiApi.BASE_URL)
         httpClient(HttpClient {
             install(ContentNegotiation) {
                 json(Json { isLenient = true; ignoreUnknownKeys = true })
