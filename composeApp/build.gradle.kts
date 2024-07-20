@@ -72,7 +72,11 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodel.compose)
 
             // Utilities
-          //  implementation(libs.util.image.picker)
+            implementation(libs.util.image.picker)
+            api("io.github.qdsfdhvh:image-loader:1.4.4")
+            implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.3.2")
+            implementation("org.jetbrains.compose.foundation:foundation:1.0.0")
+
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)

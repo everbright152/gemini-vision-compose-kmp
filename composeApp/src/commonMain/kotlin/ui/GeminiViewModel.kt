@@ -28,13 +28,13 @@ class GeminiViewModel(
 
 
     fun onGreatingAI(){
-        _listItem.add(Item(true, "Hi My Name Geminy,\nI'm Your Virtual Assistent May I Can Help You?"))
+        _listItem.add(Item(true, "Hi My Name Gemini,\nI'm Your Virtual Assistent May I Can Help You?"))
         addItem()
     }
 
     fun getContent(prompt : String){
        _isLoading.value=true
-        _listItem.add(Item(false, prompt))
+        _listItem.add(Item(false, prompt, isLoading = true))
         addItem()
         try {
             viewModelScope.launch{
@@ -66,8 +66,9 @@ class GeminiViewModel(
     }
 
     fun getContentWithAttachment(prompt : String, image:Pair<String, String>){
-        _listItem.add(Item(false, prompt))
-        _promptResult.value = _listItem
+        _isLoading.value=true
+        _listItem.add(Item(false, prompt, true, image.second))
+        addItem()
         viewModelScope.launch{
             val body = RequestBody.createWithImage(
                 prompt = prompt,
@@ -81,7 +82,8 @@ class GeminiViewModel(
                 ?.text.orEmpty()
             withContext(Dispatchers.Main){
                 _listItem.add(Item(true, result))
-                _promptResult.value = _listItem
+                addItem()
+                _isLoading.value=false
             }
         }
     }

@@ -2,21 +2,21 @@ package ui
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.OutlinedTextField
@@ -38,11 +38,20 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import book_gemini.composeapp.generated.resources.Res
+import book_gemini.composeapp.generated.resources.baseline_photo_camera_24
+import com.preat.peekaboo.image.picker.SelectionMode
+import com.preat.peekaboo.image.picker.rememberImagePickerLauncher
 import di.Providers
 import kotlinx.coroutines.launch
-import state.LoadState
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.painterResource
 import ui.component.AIItem
+import ui.component.ImageDialog
+import ui.component.LoadingItem
 import ui.component.MyItem
+import kotlin.io.encoding.Base64
+import kotlin.io.encoding.ExperimentalEncodingApi
 
 @Composable
 fun GeminiApp(
@@ -50,9 +59,9 @@ fun GeminiApp(
     navController: NavHostController = rememberNavController(),
     onErroMessage : (String) -> Unit = {}
 ) {
-    var prompt by remember { mutableStateOf(TextFieldValue("")) }
 
-
+    var isShowDialogImage by remember{ mutableStateOf(false) }
+    var imageBase64 by remember { mutableStateOf("") }
     val promptResult by viewModel.promptResult.collectAsState()
     val isLoading by viewModel.isLoading.collectAsState()
     val listState = rememberLazyListState()
@@ -73,6 +82,7 @@ fun GeminiApp(
 
     Column(
         modifier = Modifier.fillMaxSize()
+            .windowInsetsPadding(WindowInsets.safeDrawing)
             .padding(horizontal = 10.dp)
     ) {
 
@@ -83,52 +93,102 @@ fun GeminiApp(
                     AIItem(item)
                 else MyItem(Modifier, item)
             }
-
+            item {
+                if (isLoading){
+                    LoadingItem()
+                }
+            }
 
         }
 
         AnimatedVisibility(visible = !isLoading  ){
-            Row(
-                modifier = Modifier.fillMaxWidth()
-                    .wrapContentHeight()
-                    .background(color = Color(gray), shape = RoundedCornerShape(10.dp))
-                    .padding(10.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                OutlinedTextField(shape = RoundedCornerShape(10.dp),
-                    modifier = Modifier.weight(1f),
-                    value = prompt,
-                    onValueChange = { newText ->
-                        prompt = newText
-                    },
-                    placeholder = {
-                        Text(text = "Type something")
-                    }
-                )
-                Spacer(Modifier.width(5.dp))
-                IconButton(modifier = Modifier.background(
-                    color = Color(primary),
-                    shape = RoundedCornerShape(50)
-                ),
-                    onClick = {
-                        if (prompt.text.isEmpty())
-                            onErroMessage("Empty command not allow, Type Something Please...")
-                        else {
-                            viewModel.getContent(prompt.text)
-                            prompt = TextFieldValue("")
-                        }
-
-
-                    }
-                ) {
-                    Icon(imageVector = Icons.Default.Send, contentDescription = null)
-                }
-
-            }
+            TypeArea(viewModel,  {value->
+                isShowDialogImage = value.first
+                imageBase64 = value.second
+            },onErroMessage)
         }
 
     }
 
 
+    ImageDialog(isShowDialogImage, imageBase64){ result->
+        isShowDialogImage=false
+        if (result.isNotEmpty()) {
+            //first for type image
+            //second for base64
+            val post = Pair("image/png", imageBase64)
+            viewModel.getContentWithAttachment(result, post)
+        }
+        imageBase64 = ""
+    }
 
+}
+
+@OptIn(ExperimentalResourceApi::class, ExperimentalEncodingApi::class)
+@Composable
+fun TypeArea(viewModel: GeminiViewModel, showDialogImage : (Pair<Boolean, String>)->Unit, onErroMessage: (String) -> Unit) {
+    val scope = rememberCoroutineScope()
+
+    var prompt by remember { mutableStateOf(TextFieldValue("")) }
+
+    val singleImagePicker = rememberImagePickerLauncher(
+        selectionMode = SelectionMode.Single,
+        scope = scope,
+        onResult = { byteArrays ->
+            byteArrays.firstOrNull()?.let {
+                showDialogImage( Pair(true, Base64.encode(it)))
+            }
+        }
+    )
+
+    Row(
+        modifier = Modifier.fillMaxWidth()
+            .wrapContentHeight()
+            .background(color = Color(gray), shape = RoundedCornerShape(10.dp))
+            .padding(10.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        OutlinedTextField(shape = RoundedCornerShape(10.dp),
+            modifier = Modifier.weight(1f),
+            value = prompt,
+            onValueChange = { newText ->
+                prompt = newText
+            },
+            placeholder = {
+                Text(text = "Type something")
+            }
+        )
+        Spacer(Modifier.width(5.dp))
+        IconButton(modifier = Modifier.background(
+            color = Color(primary),
+            shape = RoundedCornerShape(50)
+        ),
+            onClick = {
+                singleImagePicker.launch()
+            }
+        ) {
+            Icon(painter = painterResource(Res.drawable.baseline_photo_camera_24), contentDescription = null)
+        }
+
+
+        Spacer(Modifier.width(5.dp))
+        IconButton(modifier = Modifier.background(
+            color = Color(primary),
+            shape = RoundedCornerShape(50)
+        ),
+            onClick = {
+                if (prompt.text.isEmpty())
+                    onErroMessage("Empty command not allow, Type Something Please...")
+                else {
+                    viewModel.getContent(prompt.text)
+                    prompt = TextFieldValue("")
+                }
+
+
+            }
+        ) {
+            Icon(imageVector = Icons.Default.Send, contentDescription = null)
+        }
+
+    }
 }

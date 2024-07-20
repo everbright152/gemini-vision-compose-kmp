@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import book_gemini.composeapp.generated.resources.Res
 import book_gemini.composeapp.generated.resources.compose_multiplatform
+import book_gemini.composeapp.generated.resources.ic_bot
 import data.items.Item
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
@@ -29,7 +30,7 @@ fun AIItem(item: Item ) {
         end = 50.dp,  )){
         Row(modifier = Modifier) {
             Image(
-                painter = painterResource(Res.drawable.compose_multiplatform),
+                painter = painterResource(Res.drawable.ic_bot),
                 contentDescription = null,
                 modifier = Modifier
                     .size(50.dp)

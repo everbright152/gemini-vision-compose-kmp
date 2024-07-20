@@ -14,12 +14,14 @@ data class RequestBody(
     companion object {
         fun createWithImage(prompt: String, image: Pair<String, String>): String {
             val body = RequestBody(
-                content = listOf<RequestContent>(
+                content = listOf(
                     RequestContent(
                         parts = listOf(
                             RequestPart(
                                 text = prompt,
-                                data = RequestPartData(
+                            ),
+                            RequestPart(
+                                inlineData = RequestPartData(
                                     mimeType = image.first,
                                     data = image.second
                                 )
@@ -58,16 +60,16 @@ data class RequestContent(
 @Serializable
 data class RequestPart(
     @SerialName("text")
-    val text: String ,
+    val text: String  ? = null ,
 
-    @SerialName("inlindeData")
-    val data: RequestPartData? = null
+    @SerialName("inline_data")
+    val inlineData: RequestPartData? = null
 )
 
 @Serializable
 data class RequestPartData(
 
-    @SerialName("mimeType")
+    @SerialName("mime_type")
     val mimeType: String,
     @SerialName("data")
     val data: String,

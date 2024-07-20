@@ -1,9 +1,12 @@
 package ui.component
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
@@ -12,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import data.items.Item
@@ -29,11 +33,25 @@ fun MyItem(modifier: Modifier = Modifier, item: Item) {
             backgroundColor = Color(primary),
             border = BorderStroke(0.dp, Color.Transparent)
         ) {
-            Text(
-                item.value, modifier = Modifier.wrapContentSize()
-                    .padding(vertical = 8.dp, horizontal = 10.dp),
-                textAlign = TextAlign.End
-            )
+            Column(modifier = Modifier.wrapContentSize()) {
+                item.baseImage64?.apply {
+                    val image = CommonHelper.convertDecodeBase64ToImageBitmap(item.baseImage64)
+                    if (image != null) {
+                        Image(
+                            bitmap =  image  ,
+                            contentDescription = null,
+                            modifier = Modifier.size(320.dp),
+                            contentScale = ContentScale.Crop
+                        )
+                    }
+                }
+
+                Text(
+                    item.value, modifier = Modifier.wrapContentSize()
+                        .padding(vertical = 8.dp, horizontal = 10.dp),
+                    textAlign = TextAlign.End
+                )
+            }
         }
     }
 }
