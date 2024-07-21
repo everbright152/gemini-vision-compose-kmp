@@ -25,7 +25,7 @@ the key in variable name KEY..😊😊😊
 |-----------------------------------------------------------------|---------------------------------------------------------|
 | <img src="https://github.com/FirmanTaufik/Compose-Multiplatform-With-Gemini-AI/blob/finishing/Screenshot_20240721_003900.png" width="300" height="700"> | <img src="https://github.com/FirmanTaufik/Compose-Multiplatform-With-Gemini-AI/blob/finishing/Screenshot 2024-07-21 at 00.41.45.png" width="300" height="700"> |
 
-# Here is the demo video.#
+# Here is the demo video #
 [![IMAGE ALT TEXT HERE](https://github.com/FirmanTaufik/Compose-Multiplatform-With-Gemini-AI/blob/finishing/Screenshot%202024-07-21%20at%2009.29.33.png)]([https://www.youtube.com/watch?v=-YRuQWFi3cQ&ab_channel=FirmanTaufik](https://youtu.be/-YRuQWFi3cQ))
 
 Happy coding..👍👍👍
