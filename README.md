@@ -25,15 +25,9 @@ the key in variable name KEY..😊😊😊
 |-----------------------------------------------------------------|---------------------------------------------------------|
 | <img src="https://github.com/FirmanTaufik/Compose-Multiplatform-With-Gemini-AI/blob/finishing/Screenshot_20240721_003900.png" width="300" height="700"> | <img src="https://github.com/FirmanTaufik/Compose-Multiplatform-With-Gemini-AI/blob/finishing/Screenshot 2024-07-21 at 00.41.45.png" width="300" height="700"> |
 
-<b>iOS</br>
-<br>
-<img width="300" src="https://github.com/FirmanTaufik/Compose-Multiplatform-With-Gemini-AI/blob/finishing/Screenshot 2024-07-21 at 00.41.45.png" data-canonical-src="https://github.com/FirmanTaufik/Compose-Multiplatform-With-Gemini-AI/blob/finishing/Screenshot 2024-07-21 at 00.41.45.png"  > 
+# Here is the demo video.#
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/Xr7ozf4XGbY/0.jpg)](https://www.youtube.com/watch?v=Xr7ozf4XGbY)
 
-<b>Android</br>
-<br>
-<img width="300" src="https://github.com/FirmanTaufik/Compose-Multiplatform-With-Gemini-AI/blob/finishing/Screenshot_20240721_003900.png" data-canonical-src="https://github.com/FirmanTaufik/Compose-Multiplatform-With-Gemini-AI/blob/finishing/Screenshot_20240721_003900.png"  > 
- 
-
-Good Luck Bro..👍👍👍
+Happy coding..👍👍👍
 
 
