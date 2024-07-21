@@ -14,7 +14,7 @@ I just exploring Compose Multiplatform and Gemini API, this is simple App can ma
 - peekaboo as image picker, this library is amazing btw (https://github.com/onseok/peekaboo)
 
 # Note #
-I really sorry for anyone ask me why not use SDK, while i init this project unfortunately Google not yet provide for Compose Multiplatfrom or KMP.  So i go for API for exploring for other options. 
+I really sorry for anyone ask me why not use SDK, while i init this project unfortunately Google not yet provide for Compose Multiplatfrom or KMP.  So we go for API for exploring for other options. 
 <br>
 Well if you want to clone or make this app more powerfull go ahead just create Gemini API key and paste in composeApp\src\commonMain\kotlin\di\network\GeminiApi.kt you can  paste
 the key in variable name KEY..😊😊😊
