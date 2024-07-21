@@ -21,15 +21,14 @@ the key in variable name KEY..😊😊😊
 
 # Screenshoot #
 
-<p float="left">
+ 
 -iOS
 <img width="300" src="https://github.com/FirmanTaufik/Compose-Multiplatform-With-Gemini-AI/blob/finishing/Screenshot 2024-07-21 at 00.41.45.png" data-canonical-src="https://github.com/FirmanTaufik/Compose-Multiplatform-With-Gemini-AI/blob/finishing/Screenshot 2024-07-21 at 00.41.45.png"  >
 <br>
 
 -Android
 
-<img width="300" src="https://github.com/FirmanTaufik/Compose-Multiplatform-With-Gemini-AI/blob/finishing/Screenshot_20240721_003900.png" data-canonical-src="https://github.com/FirmanTaufik/Compose-Multiplatform-With-Gemini-AI/blob/finishing/Screenshot_20240721_003900.png"  >
-</p>
+<img width="300" src="https://github.com/FirmanTaufik/Compose-Multiplatform-With-Gemini-AI/blob/finishing/Screenshot_20240721_003900.png" data-canonical-src="https://github.com/FirmanTaufik/Compose-Multiplatform-With-Gemini-AI/blob/finishing/Screenshot_20240721_003900.png"  > 
  
 
 Good Luck Bro..👍👍👍
