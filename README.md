@@ -7,7 +7,7 @@ I just exploring Compose Multiplatform and Gemini API, this is simple App can ma
 - I also super thanks to Google Developer I/O Extended who has make event and Workshop Compose Multiplatform talking Gemini AI.
 - Well i really appreciated with this https://github.com/isfaaghyth/gemini-ai-kmp thanks for sharing Mr.isfaaghyth.
 
-# What We I Use In This App #
+# What I Use In This App #
 - Core of this Gemini API (https://ai.google.dev/gemini-api/docs/api-overview#curl_1)
 - Depedency Injection with Koin refer (https://insert-koin.io/)
 - Ktor as HTTP Request (https://ktor.io/)
