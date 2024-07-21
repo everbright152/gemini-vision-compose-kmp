@@ -1,14 +1,37 @@
-This is a Kotlin Multiplatform project targeting Android, iOS, Desktop.
+# Compose-Multiplatform-With-Gemini-AI #
 
-* `/composeApp` is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - `commonMain` is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    `iosMain` would be the right folder for such calls.
+I just exploring Compose Multiplatform and Gemini API, this is simple App can make request to Gemini help us every question and i just add feature upload image to make request also to Gemini recognize the image. 😃😃
 
-* `/iosApp` contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform, 
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+# Helper #
+- Thanks to my time to learn this.
+- I also super thanks to Google Developer I/O Extended who has make event and Workshop Compose Multiplatform talking Gemini AI.
+- Well i really appreciated with this https://github.com/isfaaghyth/gemini-ai-kmp thanks for sharing Mr.isfaaghyth.
+
+# What We I Use In This App #
+- Core of this Gemini API (https://ai.google.dev/gemini-api/docs/api-overview#curl_1)
+- Depedency Injection with Koin refer (https://insert-koin.io/)
+- Ktor as HTTP Request (https://ktor.io/)
+- peekaboo as image picker, this library is amazing btw (https://github.com/onseok/peekaboo)
+
+# Note #
+I really sorry for anyone ask me why not use SDK, while i init this project unfortunately Google not yet provide for Compose Multiplatfrom or KMP.  So i go for API for exploring for other options. 
+<br>
+Well if you want to clone or make this app more powerfull go ahead just create Gemini API key and paste in composeApp\src\commonMain\kotlin\di\network\GeminiApi.kt you can  paste
+the key in variable name KEY..😊😊😊
+
+# Screenshoot #
+
+<p float="left">
+<iOS>
+<img width="300" src="https://github.com/FirmanTaufik/Compose-Multiplatform-With-Gemini-AI/blob/finishing/Screenshot 2024-07-21 at 00.41.45.png" data-canonical-src="https://github.com/FirmanTaufik/Compose-Multiplatform-With-Gemini-AI/blob/finishing/Screenshot 2024-07-21 at 00.41.45.png"  >
+<br>
+
+<Android>
+
+<img width="300" src="https://github.com/FirmanTaufik/Compose-Multiplatform-With-Gemini-AI/blob/finishing/Screenshot_20240721_003900.png" data-canonical-src="https://github.com/FirmanTaufik/Compose-Multiplatform-With-Gemini-AI/blob/finishing/Screenshot_20240721_003900.png"  >
+</p>
+ 
+
+Good Luck Bro..👍👍👍
 
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
